@@ -28,4 +28,10 @@ RUN apk --update add bash curl && \
 EXPOSE 34197/udp
 EXPOSE 27015/tcp
 
+ENV SERVER_NAME="factorio server" \
+    SERVER_DESCRIPTION="" \
+    SERVER_VISIBILITY="hidden" \
+    SERVER_GAME_PASSWORD="" \
+    SERVER_VERIFY_IDENTITY="true"
+
 CMD ["./new_smart_launch.sh"]

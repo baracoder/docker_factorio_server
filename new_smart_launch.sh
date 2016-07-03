@@ -10,6 +10,36 @@ echo '  \  \::/     \  \::/       \  \:\  /:/  \__\/  \:\   \  \:\  /:/   \  \::
 echo '   \  \:\      \  \:\        \  \:\/:/        \  \:\   \  \:\/:/     \  \:\          /__/:/    \  \:\/:/  '
 echo '    \  \:\      \  \:\        \  \::/          \__\/    \  \::/       \  \:\         \__\/      \  \::/   '
 echo '     \__\/       \__\/         \__\/                     \__\/         \__\/                     \__\/    '
+
+
+# write server settings
+SERVER_SETTINGS=/opt/factorio/server-settings.json
+cat << EOF > $SERVER_SETTINGS
+{
+  "name": "$SERVER_NAME",
+  "description": "$SERVER_DESCRIPTION",
+  "max_players": "$SERVER_MAX_PLAYERS",
+
+  "_comment_visibility": ["public: Game will be published on the official Factorio matching server",
+                          "lan: Game will be broadcast on LAN",
+                          "hidden: Game will not be published anywhere"],
+  "visibility": "$SERVER_VISIBILITY",
+
+  "_comment_credentials": "Your factorio.com login credentials. Required for games with visibility public",
+  "username": "",
+  "password": "",
+
+  "_comment_token": "Authentication token. May be used instead of 'password' above.",
+  "token": "",
+
+  "game_password": "$SERVER_GAME_PASSWORD",
+
+  "_comment_verify_user_identity": "When set to true, the server will only allow clients that have a valid Factorio.com account",
+  "verify_user_identity": $SERVER_VERIFY_IDENTITY
+}
+EOF
+
+
 # Checking if server is ready 
 if [ $FACTORIO_WAITING == true ] 
 then 
@@ -72,9 +102,9 @@ then
     echo "###"
     /opt/factorio/bin/x64/factorio --create save.zip
   fi
-  factorio_command="$factorio_command --start-server-load-latest"
+  factorio_command="$factorio_command --server-settings $SERVER_SETTINGS --start-server-load-latest"
 else
-  factorio_command="$factorio_command --start-server $FACTORIO_SAVE"
+  factorio_command="$factorio_command --server-settings $SERVER_SETTINGS --start-server $FACTORIO_SAVE"
 fi
 echo "###"
 echo "# Launching Game"
