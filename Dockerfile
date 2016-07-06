@@ -14,8 +14,6 @@ ENV FACTORIO_AUTOSAVE_INTERVAL=2 \
     FACTORIO_ALLOW_COMMANDS=false \
     FACTORIO_NO_AUTO_PAUSE=false \
     FACTORIO_LATENCY_MS=100 \
-    VERSION=0.13.5 \
-    FACTORIO_SHA1=34d2601e463995a035ebb882ef0e304c11d50249 \
     FACTORIO_WAITING=false \
     FACTORIO_MODE=normal
 
@@ -30,6 +28,9 @@ ENV SERVER_NAME="factorio server" \
     SERVER_VERIFY_IDENTITY="true"
 
 CMD ["./new_smart_launch.sh"]
+
+ARG VERSION=0.13.5
+ARG FACTORIO_SHA1=34d2601e463995a035ebb882ef0e304c11d50249
 
 RUN curl -sSL --cacert /opt/factorio.crt https://www.factorio.com/get-download/$VERSION/headless/linux64 -o /tmp/factorio_headless_x64_$VERSION.tar.gz && \
     sha1sum /tmp/factorio_headless_x64_$VERSION.tar.gz && \
