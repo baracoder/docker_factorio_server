@@ -1,6 +1,6 @@
 FROM frolvlad/alpine-glibc:alpine-3.3_glibc-2.23
 
-MAINTAINER zopanix <zopanix@gmail.com>
+MAINTAINER <baracoder@googlemail.com>
 
 WORKDIR /opt
 
@@ -19,14 +19,9 @@ ENV FACTORIO_AUTOSAVE_INTERVAL=2 \
     FACTORIO_WAITING=false \
     FACTORIO_MODE=normal
 
-RUN apk --update add bash curl && \
-    curl -sSL --cacert /opt/factorio.crt https://www.factorio.com/get-download/$VERSION/headless/linux64 -o /tmp/factorio_headless_x64_$VERSION.tar.gz && \
-    echo "$FACTORIO_SHA1  /tmp/factorio_headless_x64_$VERSION.tar.gz" | sha1sum -c && \
-    tar xzf /tmp/factorio_headless_x64_$VERSION.tar.gz && \
-    rm /tmp/factorio_headless_x64_$VERSION.tar.gz
+RUN apk --update --no-cache add bash curl
 
-EXPOSE 34197/udp
-EXPOSE 27015/tcp
+EXPOSE 34197/udp 27015/tcp
 
 ENV SERVER_NAME="factorio server" \
     SERVER_DESCRIPTION="" \
@@ -35,3 +30,11 @@ ENV SERVER_NAME="factorio server" \
     SERVER_VERIFY_IDENTITY="true"
 
 CMD ["./new_smart_launch.sh"]
+
+RUN curl -sSL --cacert /opt/factorio.crt https://www.factorio.com/get-download/$VERSION/headless/linux64 -o /tmp/factorio_headless_x64_$VERSION.tar.gz && \
+    sha1sum /tmp/factorio_headless_x64_$VERSION.tar.gz && \
+    echo "$FACTORIO_SHA1  /tmp/factorio_headless_x64_$VERSION.tar.gz" | sha1sum -c && \
+    tar xzf /tmp/factorio_headless_x64_$VERSION.tar.gz && \
+    rm /tmp/factorio_headless_x64_$VERSION.tar.gz
+
+
