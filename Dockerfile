@@ -17,8 +17,6 @@ ENV FACTORIO_AUTOSAVE_INTERVAL=2 \
     FACTORIO_WAITING=false \
     FACTORIO_MODE=normal
 
-RUN apk --update --no-cache add bash curl
-
 EXPOSE 34197/udp 27015/tcp
 
 ENV SERVER_NAME="factorio server" \
@@ -29,11 +27,11 @@ ENV SERVER_NAME="factorio server" \
 
 CMD ["./new_smart_launch.sh"]
 
-ARG VERSION=0.13.5
-ARG FACTORIO_SHA1=34d2601e463995a035ebb882ef0e304c11d50249
+ARG VERSION=0.13.6
+ARG FACTORIO_SHA1=4d132944be76776a47970a712268409042b1d88a
 
-RUN curl -sSL --cacert /opt/factorio.crt https://www.factorio.com/get-download/$VERSION/headless/linux64 -o /tmp/factorio_headless_x64_$VERSION.tar.gz && \
-    sha1sum /tmp/factorio_headless_x64_$VERSION.tar.gz && \
+ADD https://www.factorio.com/get-download/$VERSION/headless/linux64 /tmp/factorio_headless_x64_$VERSION.tar.gz
+RUN sha1sum /tmp/factorio_headless_x64_$VERSION.tar.gz && \
     echo "$FACTORIO_SHA1  /tmp/factorio_headless_x64_$VERSION.tar.gz" | sha1sum -c && \
     tar xzf /tmp/factorio_headless_x64_$VERSION.tar.gz && \
     rm /tmp/factorio_headless_x64_$VERSION.tar.gz
