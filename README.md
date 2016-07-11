@@ -3,10 +3,11 @@ Factorio
 Factorio Server in docker
 
 This is a fork from https://github.com/zopanix/docker_factorio_server
+with a little bit different docker file and more settings.
 
 Current Version
 -----
-0.13.7
+0.13.8
 
 #### Factorio
 See [factorio's site](http://www.factorio.com)
@@ -24,8 +25,8 @@ docker run -d \
 * Where [PATH] is a folder where you'll put your saves, if there already is a save in it with the string "save", that one will be taken by default, otherwize, a new one will be made.
 * Where [PORT] is the port number you choose, if you're going to launch it on your local machine, don't use the port 34197, take another one at random.
 
-Settings
---------
+Environment variables
+---------------------
 
 You can pass environment variables with `-e`
 
