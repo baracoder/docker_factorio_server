@@ -6,7 +6,7 @@ This is a fork from https://github.com/zopanix/docker_factorio_server
 
 Current Version
 -----
-0.13.5
+0.13.7
 
 #### Factorio
 See [factorio's site](http://www.factorio.com)
