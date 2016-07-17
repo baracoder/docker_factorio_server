@@ -7,7 +7,7 @@ with a little bit different docker file and more settings.
 
 Current Version
 -----
-0.13.8
+0.13.9
 
 #### Factorio
 See [factorio's site](http://www.factorio.com)

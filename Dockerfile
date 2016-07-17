@@ -27,13 +27,10 @@ ENV SERVER_NAME="factorio server" \
 
 CMD ["./new_smart_launch.sh"]
 
-ARG VERSION=0.13.8
-ARG FACTORIO_SHA1=fd835ec0987a525ddc92acb003d9c75745261bb2
+ARG VERSION=0.13.9
 
 ADD https://www.factorio.com/get-download/$VERSION/headless/linux64 /tmp/factorio_headless_x64_$VERSION.tar.gz
-RUN sha1sum /tmp/factorio_headless_x64_$VERSION.tar.gz && \
-    echo "$FACTORIO_SHA1  /tmp/factorio_headless_x64_$VERSION.tar.gz" | sha1sum -c && \
-    tar xzf /tmp/factorio_headless_x64_$VERSION.tar.gz && \
+RUN tar xzf /tmp/factorio_headless_x64_$VERSION.tar.gz && \
     rm /tmp/factorio_headless_x64_$VERSION.tar.gz
 
 
