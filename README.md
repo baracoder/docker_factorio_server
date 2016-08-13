@@ -9,7 +9,7 @@ See [factorio's site](http://www.factorio.com)
 
 Current Version
 ---------------
-0.13.14
+0.13.15
 
 Tags
 ----
@@ -26,6 +26,7 @@ Tags
 - 0.13.12
 - 0.13.13
 - 0.13.14
+- 0.13.15
 
 
 
